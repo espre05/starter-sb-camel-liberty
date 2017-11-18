@@ -1,4 +1,4 @@
-package it;
+package orca.app;
 
 import static org.junit.Assert.assertTrue;
 
@@ -12,7 +12,7 @@ public class EndpointTest {
 
     public void testEndpoint(String endpoint, String expectedOutput) {
         String port = "9080";//System.getProperty("liberty.test.port");
-        String war = "starterlibertysboot";//System.getProperty("war.context");
+        String war = "prem-orca";//System.getProperty("war.context");
         String url = "http://localhost:" + port + "/" + war + endpoint;
         System.out.println("Testing " + url);
         Response response = sendRequest(url, "GET");

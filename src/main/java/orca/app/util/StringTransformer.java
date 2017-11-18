@@ -1,4 +1,4 @@
-package sb.app.beans;
+package orca.app.util;
 
 public class StringTransformer{
 	public String toUpper(String content) {

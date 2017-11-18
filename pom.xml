@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>projects</groupId>
-	<artifactId>starter-sb-camel-liberty</artifactId>
+	<artifactId>prem-orca</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -14,7 +14,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 
-		<app.name>starter-sb-camel-liberty</app.name>
+		<app.name>prem-orca</app.name>
 		<testServerHttpPort>9080</testServerHttpPort>
 		<testServerHttpsPort>9443</testServerHttpsPort>
 		<warContext>${app.name}</warContext>
@@ -22,7 +22,6 @@
 		<packaging.type>usr</packaging.type>
 
 		<springboot.version>1.5.8.RELEASE</springboot.version>
-		<!--springboot.version>1.3.3.RELEASE</springboot.version -->
 		<camel.version>2.20.0</camel.version>
 
 	</properties>
@@ -31,7 +30,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<!-- <version>4.12</version> -->
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -46,16 +44,12 @@
 			<version>1.0.4</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>javax.ws.rs</groupId>
-			<artifactId>javax.ws.rs-api</artifactId>
-			<version>2.0.1</version>
-			<scope>provided</scope>
-		</dependency>
+		<!--dependency> <groupId>javax.ws.rs</groupId> <artifactId>javax.ws.rs-api</artifactId> 
+			<version>2.1-m01</version> <scope>provided</scope> </dependency -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<!--version>3.1.0</version-->
+			<!--version>3.1.0</version -->
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -67,7 +61,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<!--version>${springboot.version}</version-->
+			<!--version>${springboot.version}</version -->
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
@@ -90,7 +84,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<!--version>${springboot.version}</version-->
 		</dependency>
 		<!-- Camel deps -->
 		<dependency>
@@ -119,13 +112,26 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<!-- Excl for WAS9 -->
+			<!--exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.hibernate.javax.persistence</groupId>
+					<artifactId>hibernate-jpa-2.1-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.transaction</groupId>
+					<artifactId>javax.transaction-api</artifactId>
+				</exclusion>
+			</exclusions-->
 		</dependency>
-				<!--dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId> 
+		<!--dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId> 
 			</dependency -->
-		<!--dependency> repeat
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency-->
+		<!--dependency> repeat <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-web</artifactId> 
+			</dependency -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
@@ -134,11 +140,8 @@
 			<groupId>org.springframework.boot</groupId><!-- Repo as rest -->
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
-		<!--dependency> repeat
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-		</dependency-->
+		<!--dependency> repeat <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-devtools</artifactId> 
+			<scope>runtime</scope> </dependency -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -153,7 +156,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-		</dependency>		
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -199,7 +202,7 @@
 						<id>default-test</id>
 						<configuration>
 							<excludes>
-								<exclude>**/it/**</exclude>
+								<exclude>**/orca.app/**</exclude>
 							</excludes>
 							<reportsDirectory>${project.build.directory}/test-reports/unit</reportsDirectory>
 						</configuration>
@@ -299,7 +302,7 @@
 						</goals>
 						<configuration>
 							<includes>
-								<include>**/it/**</include>
+								<include>**/orca.app/**</include>
 							</includes>
 							<systemPropertyVariables>
 								<liberty.test.port>${testServerHttpPort}</liberty.test.port>
@@ -315,8 +318,8 @@
 					</execution>
 				</executions>
 				<configuration>
-					<summaryFile>${project.build.directory}/test-reports/it/failsafe-summary.xml</summaryFile>
-					<reportsDirectory>${project.build.directory}/test-reports/it</reportsDirectory>
+					<summaryFile>${project.build.directory}/test-reports/orca.app/failsafe-summary.xml</summaryFile>
+					<reportsDirectory>${project.build.directory}/test-reports/orca.app</reportsDirectory>
 				</configuration>
 			</plugin>
 		</plugins>

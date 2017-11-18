@@ -1,0 +1,7 @@
+---
+applications:
+ - name: prem-orca
+   random-route: true
+   path: target/prem-orca-1.0-SNAPSHOT.war
+   memory: 256M
+   instances: 1
