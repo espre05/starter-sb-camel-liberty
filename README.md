@@ -31,16 +31,18 @@ The application is configured to provide various technologies and features. Thes
 ### Project contents
 The context root is set in the `src/main/webapp/WEB-INF/ibm-web-ext.xml` file. The ports are set in the pom.xml file.     
 
-* **Springboot** : Inside the project there is a orca.app package containing two classes:
+* **Springboot** : Inside the project there is a failsafe.orca package containing two classes:
     * `SpringBootLibertyApplication`: The entry point for the SpringBoot application.
     * `LibertyHelloController`: A Spring REST endpoint which you can access at `http://localhost:9080/<context>/springbootweb`
 
-There is also a test class named `orca.app.rest.HelloControllerTest` that will test the Spring REST endpoint to ensure orca.app is working.    
+There is also a test class named `failsafe.orca.rest.InsuranceControllerTest` that will test the Spring REST endpoint to ensure failsafe.orca is working.    
 ### Run
 
 To build and run the application:
 1. `mvn install`
 1. `mvn liberty:run-server`
+1. `mvn install -Dmaven.test.skip=true`
+
  
 
 ### Endpoints

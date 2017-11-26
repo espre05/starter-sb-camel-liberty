@@ -1,4 +1,4 @@
-package orca.app;
+package failsafe.orca;
 
 import static org.junit.Assert.assertTrue;
 
@@ -25,7 +25,7 @@ public class EndpointTest {
         assertTrue("Incorrect response, response is " + responseString, responseString.contains(expectedOutput));
     }
 
-    public Response sendRequest(String url, String requestType) {
+    private Response sendRequest(String url, String requestType) {
         Client client = ClientBuilder.newClient();
         System.out.println("Testing " + url);
         WebTarget target = client.target(url);

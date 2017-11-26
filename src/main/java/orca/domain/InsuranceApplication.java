@@ -1,4 +1,4 @@
-package orca.app.domain;
+package orca.domain;
 
 public class InsuranceApplication {
     String appNumber;

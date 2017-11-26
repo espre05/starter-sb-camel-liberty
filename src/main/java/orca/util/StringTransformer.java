@@ -1,4 +1,4 @@
-package orca.app.util;
+package orca.util;
 
 public class StringTransformer{
 	public String toUpper(String content) {
