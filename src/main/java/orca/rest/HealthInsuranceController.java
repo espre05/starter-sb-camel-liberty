@@ -1,5 +1,7 @@
 package orca.rest;
 
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
@@ -7,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,9 @@ import orca.repo.PostalCodeRepository;
 
 @RestController
 @RequestMapping(value = "api/v1/", produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+@Path("api/v1/")
+@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML })
+@Component
 public class HealthInsuranceController {
     private static final Logger log = LoggerFactory.getLogger(HealthInsuranceController.class);
 
