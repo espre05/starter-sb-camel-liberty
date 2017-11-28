@@ -35,7 +35,8 @@ public class HealthInsuranceController {
     @ApiOperation(value = "insuranceApplication", nickname = "insuranceApplication")
     @GetMapping(path = "/insuranceApplication/{appNum}")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "appNum", value = "Application Number", required = false, dataType = "string", paramType = "query", defaultValue = "ON4548") })
+            @ApiImplicitParam(name = "appNum", value = "Application Number", required = false, dataType = "string", paramType = "path", defaultValue = "ON4548") 
+            })
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = InsuranceApplication.class),
             @ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
             @ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
@@ -50,6 +51,9 @@ public class HealthInsuranceController {
     PostalCodeRepository pcrepo;
 
     @GetMapping(path = "/postalcode/{postalCode}")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "postalCode", dataType = "string", paramType = "path", defaultValue = "A1AA1") 
+        })
     public ResponseEntity<PostalCode> getPostalCode(@PathVariable String postalCode) {
         PostalCode pc1 = pcrepo.findOne(postalCode);
         log.info("Pcode found " + pc1);

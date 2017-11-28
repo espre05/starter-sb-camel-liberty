@@ -1,3 +1,6 @@
+create schema IF NOT EXISTS orca;
+set schema orca;
+
 create table IF NOT EXISTS MUNICIP  (POSTAL_CD CHAR(25)
 , MUNICIPALITY_CD INTEGER NOT NULL
 , MUNICIPALITY_DESC VARCHAR(25) NOT NULL
@@ -6,5 +9,5 @@ create table IF NOT EXISTS MUNICIP  (POSTAL_CD CHAR(25)
 ;
 INSERT INTO MUNICIP (POSTAL_CD, MUNICIPALITY_CD, MUNICIPALITY_DESC)
   VALUES
-      ('A1AA1A', 123 ,  'ot'),
-      ('111111', 234, 'ot');
+      ('A1AA1', 123 ,  'ot'),
+      ('11111', 234, 'ot');
