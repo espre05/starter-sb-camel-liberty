@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import groovy.transform.Immutable;
+
 @Entity
-@Table(name = "MUNICIP")
+@Table(name = "MUNICIPALITY")
+@Immutable
 public class PostalCode {
     @Id
     @Column(name = "POSTAL_CD")

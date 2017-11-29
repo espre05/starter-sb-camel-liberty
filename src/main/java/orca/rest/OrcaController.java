@@ -1,5 +1,7 @@
 package orca.rest;
 
+import java.util.List;
+
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -21,7 +23,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import orca.domain.InsuranceApplication;
+import orca.domain.Note;
 import orca.domain.PostalCode;
+import orca.repo.NoteRepository;
 import orca.repo.PostalCodeRepository;
 
 @RestController
@@ -29,8 +33,8 @@ import orca.repo.PostalCodeRepository;
 @Path("api/v1/")
 @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML })
 @Component
-public class HealthInsuranceController {
-    private static final Logger log = LoggerFactory.getLogger(HealthInsuranceController.class);
+public class OrcaController {
+    private static final Logger log = LoggerFactory.getLogger(OrcaController.class);
 
     @ApiOperation(value = "insuranceApplication", nickname = "insuranceApplication")
     @GetMapping(path = "/insuranceApplication/{appNum}")
@@ -52,11 +56,25 @@ public class HealthInsuranceController {
 
     @GetMapping(path = "/postalcode/{postalCode}")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "postalCode", dataType = "string", paramType = "path", defaultValue = "A1AA1") 
+        @ApiImplicitParam(name = "postalCode", dataType = "string", paramType = "path", defaultValue = "A1AA1A") 
         })
     public ResponseEntity<PostalCode> getPostalCode(@PathVariable String postalCode) {
         PostalCode pc1 = pcrepo.findOne(postalCode);
         log.info("Pcode found " + pc1);
         return new ResponseEntity<>(pc1, HttpStatus.OK);
+    }
+
+    @Autowired
+    NoteRepository noteRepo;
+
+    @GetMapping(path = "/notes/{id}/{code}")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "id", dataType = "int", paramType = "path", defaultValue = "1") 
+        ,@ApiImplicitParam(name = "code", dataType = "string", paramType = "path", defaultValue = "E") 
+        })
+    public ResponseEntity<List<Note>> getNote(@PathVariable int id,@PathVariable Character code) {
+        List<Note> note = noteRepo.findByIdAndCode(id, code);
+        log.info("Note found " + note);
+        return new ResponseEntity<>(note, HttpStatus.OK);
     }
 }

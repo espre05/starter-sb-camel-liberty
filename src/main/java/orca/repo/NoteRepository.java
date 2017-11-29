@@ -16,8 +16,10 @@
  */
 package orca.repo;
 
-import orca.domain.PostalCode;
+import java.util.List;
 
-public interface PostalCodeRepository extends ReadOnlyRepository<PostalCode, String> {
-    //PostalCode findByPostalCode(String postalcode);
+import orca.domain.Note;
+
+public interface NoteRepository extends ReadOnlyRepository<Note, String> {
+    List<Note> findByIdAndCode(int id, Character code);
 }

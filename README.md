@@ -35,7 +35,7 @@ The context root is set in the `src/main/webapp/WEB-INF/ibm-web-ext.xml` file. T
     * `SpringBootLibertyApplication`: The entry point for the SpringBoot application.
     * `LibertyHelloController`: A Spring REST endpoint which you can access at `http://localhost:9080/<context>/springbootweb`
 
-There is also a test class named `failsafe.orca.rest.InsuranceControllerTest` that will test the Spring REST endpoint to ensure failsafe.orca is working.    
+There is also a test class named `failsafe.orca.rest.OrcaControllerTest` that will test the Spring REST endpoint to ensure failsafe.orca is working.    
 ### Run
 
 To build and run the application:

@@ -18,7 +18,7 @@ import orca.domain.PostalCode;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class InsuranceControllerTest extends EndpointTest {
+public class OrcaControllerTest extends EndpointTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
