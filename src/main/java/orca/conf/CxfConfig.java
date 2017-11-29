@@ -22,12 +22,12 @@ import orca.rest.PeopleRestService;
 public class CxfConfig {
     @Autowired private PeopleRestService peopleRestService;
  
-    @Bean //(destroyMethod = "shutdown")
+    @Bean(destroyMethod = "shutdown")
     public SpringBus cxf() {
         return new SpringBus();
     }
 
-    @Bean //(destroyMethod = "destroy") 
+    @Bean(destroyMethod = "destroy") 
     @DependsOn("cxf")
     public Server jaxRsServer() {
         final JAXRSServerFactoryBean factory = new JAXRSServerFactoryBean();
