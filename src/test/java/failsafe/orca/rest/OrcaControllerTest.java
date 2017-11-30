@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import failsafe.orca.EndpointTest;
 import orca.App;
-import orca.domain.InsuranceApplication;
+import orca.domain.InsurApplication;
 import orca.domain.PostalCode;
 
 @RunWith(SpringRunner.class)
@@ -25,9 +25,9 @@ public class OrcaControllerTest extends EndpointTest {
 
     @Test
     public void getApp() {
-        ResponseEntity<InsuranceApplication> responseEntity = restTemplate
-                .getForEntity("/api/v1/insuranceApplication/ON4548", InsuranceApplication.class);
-        InsuranceApplication app = responseEntity.getBody();
+        ResponseEntity<InsurApplication> responseEntity = restTemplate
+                .getForEntity("/api/v1/insuranceApplication/RA0001", InsurApplication.class);
+        InsurApplication app = responseEntity.getBody();
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals("ON4548", app.getAppNumber());
     }

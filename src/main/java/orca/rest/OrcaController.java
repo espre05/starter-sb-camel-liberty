@@ -22,9 +22,10 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import orca.domain.InsuranceApplication;
+import orca.domain.InsurApplication;
 import orca.domain.Note;
 import orca.domain.PostalCode;
+import orca.repo.InsurApplicationRepository;
 import orca.repo.NoteRepository;
 import orca.repo.PostalCodeRepository;
 
@@ -36,17 +37,19 @@ import orca.repo.PostalCodeRepository;
 public class OrcaController {
     private static final Logger log = LoggerFactory.getLogger(OrcaController.class);
 
+    @Autowired
+    InsurApplicationRepository insurAppRepo;
     @ApiOperation(value = "insuranceApplication", nickname = "insuranceApplication")
     @GetMapping(path = "/insuranceApplication/{appNum}")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "appNum", value = "Application Number", required = false, dataType = "string", paramType = "path", defaultValue = "ON4548") 
+            @ApiImplicitParam(name = "appNum", value = "Application Number", required = false, dataType = "string", paramType = "path", defaultValue = "RA0001") 
             })
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = InsuranceApplication.class),
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = InsurApplication.class),
             @ApiResponse(code = 401, message = "Unauthorized"), @ApiResponse(code = 403, message = "Forbidden"),
             @ApiResponse(code = 404, message = "Not Found"), @ApiResponse(code = 500, message = "Failure") })
-    public ResponseEntity<InsuranceApplication> getApp(@PathVariable String appNum) {
-        InsuranceApplication app = new InsuranceApplication();
-        app.setAppNumber(appNum);
+    public ResponseEntity<InsurApplication> getApp(@PathVariable String appNum) {
+        InsurApplication app = insurAppRepo.findOne(appNum);
+               
         log.info("App num found " + appNum);
         return new ResponseEntity<>(app, HttpStatus.OK);
     }
