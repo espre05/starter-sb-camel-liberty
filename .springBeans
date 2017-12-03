@@ -7,8 +7,11 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
+		<config>src/main/resources/property-config.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>java:orca.conf.CxfConfig</config>
+		<config>java:orca.App</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

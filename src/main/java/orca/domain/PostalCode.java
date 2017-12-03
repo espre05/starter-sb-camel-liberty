@@ -5,7 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import groovy.transform.Immutable;
+import org.hibernate.annotations.Immutable;
+
 
 @Entity
 @Table(name = "MUNICIPALITY")

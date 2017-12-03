@@ -1,5 +1,9 @@
 package orca.conf;
 
+import static com.google.common.collect.Lists.newArrayList;
+
+import org.h2.server.web.WebServlet;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +17,6 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import static com.google.common.collect.Lists.newArrayList;
 
 
 @Configuration
@@ -45,4 +48,12 @@ public class WebConfiguration {
                 .version("1.0")
                 .build();
     }
+    
+//    @Bean
+//    public ServletRegistrationBean h2servletRegistration() {
+//        ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
+//        registration.addUrlMappings("/h2console/*");
+//        registration.addInitParameter("webAllowOthers", "true");
+//        return registration;
+//    }
 }

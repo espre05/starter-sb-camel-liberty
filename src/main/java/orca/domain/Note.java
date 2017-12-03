@@ -9,7 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
-import groovy.transform.Immutable;
+import org.hibernate.annotations.Immutable;
+
 
 @Entity
 @Table(name = "NOTES")
@@ -76,6 +77,8 @@ public class Note {
 }
 
 class NoteId implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     int id;
     Character code;
     Timestamp insTs;

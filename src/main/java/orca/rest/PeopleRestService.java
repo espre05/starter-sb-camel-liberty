@@ -1,6 +1,4 @@
 package orca.rest;
-import java.util.Collection;
-import java.util.Collections;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

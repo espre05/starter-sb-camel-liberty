@@ -45,3 +45,4 @@ INSERT INTO NOTES (ID, CODE, INS_TS, NOTE) VALUES
       (1, 'A' ,TIMESTAMP '2017-11-28 21:20:09.305' ,  'The babe'),
       (2, 'E' ,TIMESTAMP '2017-11-28 21:20:09.305' ,  'The thomfi')
 ;
+commit;
