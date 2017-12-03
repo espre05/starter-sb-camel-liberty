@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import orca.domain.InsurApplication;
-import orca.domain.Note;
+import orca.domain.Notetext;
 import orca.domain.PostalCode;
 import orca.repo.InsurApplicationRepository;
 import orca.repo.NoteRepository;
@@ -59,7 +59,7 @@ public class OrcaController {
 
     @GetMapping(path = "/postalcode/{postalCode}")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "postalCode", dataType = "string", paramType = "path", defaultValue = "A1AA1A") 
+        @ApiImplicitParam(name = "postalCode", dataType = "string", paramType = "path", defaultValue = "K0A1A") 
         })
     public ResponseEntity<PostalCode> getPostalCode(@PathVariable String postalCode) {
         PostalCode pc1 = pcrepo.findOne(postalCode);
@@ -75,8 +75,8 @@ public class OrcaController {
         @ApiImplicitParam(name = "id", dataType = "int", paramType = "path", defaultValue = "1") 
         ,@ApiImplicitParam(name = "code", dataType = "string", paramType = "path", defaultValue = "E") 
         })
-    public ResponseEntity<List<Note>> getNote(@PathVariable int id,@PathVariable Character code) {
-        List<Note> note = noteRepo.findByIdAndCode(id, code);
+    public ResponseEntity<List<Notetext>> getNote(@PathVariable int id,@PathVariable Character code) {
+        List<Notetext> note = noteRepo.findByIdAndCode1(id, code);
         log.info("Note found " + note);
         return new ResponseEntity<>(note, HttpStatus.OK);
     }

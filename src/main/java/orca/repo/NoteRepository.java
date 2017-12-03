@@ -18,8 +18,8 @@ package orca.repo;
 
 import java.util.List;
 
-import orca.domain.Note;
+import orca.domain.Notetext;
 
-public interface NoteRepository extends ReadOnlyRepository<Note, String> {
-    List<Note> findByIdAndCode(int id, Character code);
+public interface NoteRepository extends ReadOnlyRepository<Notetext, String> {
+    List<Notetext> findByIdAndCode1(int id, Character code);
 }
