@@ -21,7 +21,7 @@
 		<package.file>${project.build.directory}/${project.artifactId}-${project.version}.zip</package.file>
 		<packaging.type>usr</packaging.type>
 
-		<springboot.version>1.5.8.RELEASE</springboot.version>
+		<springboot.version>1.5.9.RELEASE</springboot.version>
 		<camel.version>2.20.0</camel.version>
 		<cxf.version>3.2.1</cxf.version>
 	</properties>
@@ -57,15 +57,19 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<!--dependency> <groupId>com.ibm.websphere.appserver.api</groupId> <artifactId>com.ibm.websphere.appserver.api.servlet</artifactId> 
-			<version>1.0.10</version> <scope>provided</scope> </dependency -->
+		<dependency> <groupId>com.ibm.websphere.appserver.api</groupId> <artifactId>com.ibm.websphere.appserver.api.servlet</artifactId> 
+			<version>1.0.10</version> <scope>provided</scope> </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<!--version>${springboot.version}</version -->
-			<!--exclusions> <exclusion> <groupId>org.springframework.boot</groupId> 
-				<artifactId>spring-boot-starter-tomcat</artifactId> </exclusion> </exclusions -->
+			<exclusions> <exclusion> <groupId>org.springframework.boot</groupId> 
+				<artifactId>spring-boot-starter-tomcat</artifactId> </exclusion> </exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -111,15 +115,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<!-- Excl for WAS9 -->
-			<!--exclusions> <exclusion> <groupId>xml-apis</groupId> <artifactId>xml-apis</artifactId> 
+			<exclusions> <exclusion> <groupId>xml-apis</groupId> <artifactId>xml-apis</artifactId> 
 				</exclusion> <exclusion> <groupId>org.hibernate.javax.persistence</groupId> 
 				<artifactId>hibernate-jpa-2.1-api</artifactId> </exclusion> <exclusion> <groupId>javax.transaction</groupId> 
-				<artifactId>javax.transaction-api</artifactId> </exclusion> </exclusions -->
+				<artifactId>javax.transaction-api</artifactId> </exclusion> </exclusions>
 		</dependency>
-		<!--dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId> 
-			</dependency -->
-		<!--dependency> repeat <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-web</artifactId> 
-			</dependency -->
+		<!--dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
@@ -127,6 +135,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId><!-- Repo as rest -->
 			<artifactId>spring-boot-starter-data-rest</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.data</groupId>
+					<artifactId>spring-data-rest-webmvc</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -169,6 +183,16 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-jpamodelgen</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -194,7 +218,11 @@
 	</dependencyManagement>
 	<build>
 		<plugins>
-
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${springboot.version}</version>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>

@@ -1,5 +1,6 @@
 package orca.conf;
 
+import org.apache.cxf.Bus;
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
@@ -13,36 +14,36 @@ import org.springframework.context.annotation.DependsOn;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
-import orca.rest.PeopleRestService;
+import orca.rest.PersonsRestService;
 
 @Configuration
 @EnableAutoConfiguration
 //@ComponentScan(basePackageClasses = PeopleRestService.class)
 public class CxfConfig {
-    @Autowired private PeopleRestService peopleRestService;
+    @Autowired private PersonsRestService personsRestService;
  
-    @Bean(destroyMethod = "shutdown")
-    public SpringBus cxf() {
+    @Bean(name=Bus.DEFAULT_BUS_ID,destroyMethod = "shutdown")
+    public SpringBus springBus() {      
         return new SpringBus();
     }
-
+    final String cxfUrlPrefix = "/api/cxf/*";
     @Bean(destroyMethod = "destroy") 
     @DependsOn("cxf")
     public Server jaxRsServer() {
+        
+        
         final JAXRSServerFactoryBean factory = new JAXRSServerFactoryBean();
-
-        factory.setServiceBean(peopleRestService);
+            
+        factory.setServiceBean(personsRestService);
         factory.setProvider(new JacksonJsonProvider());
-        factory.setBus(cxf());
-        factory.setAddress("/");
-
+        factory.setBus(springBus());
+        factory.setAddress("/rest"); //http://localhost:9080/prem-orca/api/cxf/rest/persons
         return factory.create();
     }
 
     @Bean
     public ServletRegistrationBean cxfServlet() {
-        final ServletRegistrationBean servletRegistrationBean = 
-            new ServletRegistrationBean(new CXFServlet(), "/apicxf/*");
+        final ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new CXFServlet(),cxfUrlPrefix);
         servletRegistrationBean.setLoadOnStartup(1);
         return servletRegistrationBean;
     }

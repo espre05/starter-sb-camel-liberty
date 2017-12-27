@@ -9,15 +9,17 @@ import org.springframework.stereotype.Component;
 
 import orca.domain.Person;
 
-@Path("people")
+
+@Path("persons")
 @Component
-public class PeopleRestService {
+public class PersonsRestService {
     @GET
-    @Produces({MediaType.APPLICATION_JSON
-        //,MediaType.APPLICATION_XML 
+    @Produces({MediaType.APPLICATION_JSON //,MediaType.APPLICATION_XML
         })
-    //@Path("people")
     public Person getPeople() {
-        return (new Person("a@b.com", "John", "Smith"));
+        Person p = new Person();//new Person("a@b.com", "John", "Smith")
+        p.setFirstName("Hello");
+        p.setLastName("abc");
+        return p;
     }
 }

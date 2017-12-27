@@ -11,10 +11,13 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Immutable;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "NOTETEXT")
 @Immutable
 @IdClass(NotetextId.class)
+@Data
 public class Notetext {
     @Id
     @Column(name = "ID")
@@ -51,111 +54,7 @@ public class Notetext {
     private  Date dateValidFrom; 
     
     @Column(name = "dt_valid_to")
-    private  Date dateValidTo;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getCode1() {
-		return code1;
-	}
-
-	public void setCode1(String code1) {
-		this.code1 = code1;
-	}
-
-	public String getCode2() {
-		return code2;
-	}
-
-	public void setCode2(String code2) {
-		this.code2 = code2;
-	}
-
-	public String getNote() {
-		return note;
-	}
-
-	public void setNote(String note) {
-		this.note = note;
-	}
-
-	public String getCode3() {
-		return code3;
-	}
-
-	public void setCode3(String code3) {
-		this.code3 = code3;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public Timestamp getInsts() {
-		return insts;
-	}
-
-	public void setInsts(Timestamp insts) {
-		this.insts = insts;
-	}
-
-	public String getInsUser() {
-		return insUser;
-	}
-
-	public void setInsUser(String insUser) {
-		this.insUser = insUser;
-	}
-
-	public Timestamp getUpdts() {
-		return updts;
-	}
-
-	public void setUpdts(Timestamp updts) {
-		this.updts = updts;
-	}
-
-	public String getUpdUser() {
-		return updUser;
-	}
-
-	public void setUpdUser(String updUser) {
-		this.updUser = updUser;
-	}
-
-	public Date getDateValidFrom() {
-		return dateValidFrom;
-	}
-
-	public void setDateValidFrom(Date dateValidFrom) {
-		this.dateValidFrom = dateValidFrom;
-	}
-
-	public Date getDateValidTo() {
-		return dateValidTo;
-	}
-
-	public void setDateValidTo(Date dateValidTo) {
-		this.dateValidTo = dateValidTo;
-	}
-
-	@Override
-	public String toString() {
-		return "Notetext [id=" + id + ", code1=" + code1 + ", code2=" + code2 + ", note=" + note + ", code3=" + code3
-				+ ", date=" + date + ", insts=" + insts + ", insUser=" + insUser + ", updts=" + updts + ", updUser="
-				+ updUser + ", dateValidFrom=" + dateValidFrom + ", dateValidTo=" + dateValidTo + "]";
-	} 
-    
+    private  Date dateValidTo;  
 }
 
 class NotetextId implements Serializable{

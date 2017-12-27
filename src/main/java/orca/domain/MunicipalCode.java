@@ -7,11 +7,14 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Immutable;
 
+import lombok.Data;
+
 
 @Entity
 @Table(name = "MUNICIPALITY")
 @Immutable
-public class PostalCode {
+//@Data
+public class MunicipalCode {
     @Id
     @Column(name = "POSTAL_CD")
     private  String postalCode;
@@ -19,7 +22,6 @@ public class PostalCode {
     private  int municipalityCode;
     @Column(name = "MUNICIPALITY_DESC")
     private  String municipalityDesc;
-    
     public String getPostalCode() {
         return postalCode;
     }
@@ -40,9 +42,8 @@ public class PostalCode {
     }
     @Override
     public String toString() {
-        return "PostalCode [postalCode=" + postalCode + ", municipalityCode=" + municipalityCode + ", municipalityDesc="
-                + municipalityDesc + "]";
+        return "MunicipalCode [postalCode=" + postalCode + ", municipalityCode=" + municipalityCode
+                + ", municipalityDesc=" + municipalityDesc + "]";
     }
-
-
+    
 }

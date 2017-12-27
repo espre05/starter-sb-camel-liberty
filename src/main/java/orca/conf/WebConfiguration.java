@@ -2,11 +2,11 @@ package orca.conf;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-import org.h2.server.web.WebServlet;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ws.client.core.WebServiceTemplate;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -49,11 +49,15 @@ public class WebConfiguration {
                 .build();
     }
     
-//    @Bean
-//    public ServletRegistrationBean h2servletRegistration() {
-//        ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
-//        registration.addUrlMappings("/h2console/*");
-//        registration.addInitParameter("webAllowOthers", "true");
-//        return registration;
-//    }
+    @Value("${}")
+    private String wsUrl;// for consumin a remote ws endpoint
+    @Bean
+    public WebServiceTemplate ws() {
+        WebServiceTemplate ws = new WebServiceTemplate();
+        ws.setDefaultUri(wsUrl);
+//        ws.setMarshaller(marshaller);
+//        ws.setUnmarshaller(unmarshaller);
+        return ws;
+    }
+
 }
