@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
@@ -18,7 +19,7 @@ import orca.rest.PersonsRestService;
 
 @Configuration
 @EnableAutoConfiguration
-//@ComponentScan(basePackageClasses = PeopleRestService.class)
+@ComponentScan(basePackageClasses = PersonsRestService.class)
 public class CxfConfig {
     @Autowired private PersonsRestService personsRestService;
  
@@ -26,7 +27,7 @@ public class CxfConfig {
     public SpringBus springBus() {      
         return new SpringBus();
     }
-    final String cxfUrlPrefix = "/api/cxf/*";
+    final String cxfUrlPrefix = "/apicxf/*";
     @Bean(destroyMethod = "destroy") 
     @DependsOn("cxf")
     public Server jaxRsServer() {
